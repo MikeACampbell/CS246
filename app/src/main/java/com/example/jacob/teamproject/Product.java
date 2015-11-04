@@ -7,6 +7,53 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import java.util.Vector;
+
+class Tie {
+    float cost;
+    int tieType;
+    int image;
+
+    Tie(float price) {
+        cost = price;
+    }
+}
+
+class Purchase {
+    Vector<Tie> myTies = new Vector<Tie>;
+    float total;
+
+    Purchase() {
+        total = 0;
+    }
+
+    float calculateTotal() {
+        for(int i = 0; i < myTies.size(); i++) {
+            total += myTies.get(i).cost;
+        }
+
+        return total;
+    }
+
+    float unit_Test() {
+        float p1 = 50;
+        float p2 = (float) 54.23;
+        float p3 = (float) 43.12;
+        Tie t1 = new Tie(p1);
+        myTies.add(t1);
+        Tie t2 = new Tie(p2);
+        myTies.add(t2);
+        Tie t3 = new Tie(p3);
+        myTies.add(t3);
+
+        float myTotal = calculateTotal();
+
+        assert myTotal == (p1 + p2 + p3);
+
+        return myTotal;
+    }
+}
+
 public class Product extends AppCompatActivity {
 
     @Override
