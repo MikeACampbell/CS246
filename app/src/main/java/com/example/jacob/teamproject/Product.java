@@ -1,5 +1,6 @@
 package com.example.jacob.teamproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,11 +20,11 @@ class Tie {
     }
 }
 
-class Purchase {
-    Vector<Tie> myTies = new Vector<Tie>;
+class Sell {
+    Vector<Tie> myTies = new Vector<Tie>();
     float total;
 
-    Purchase() {
+    Sell() {
         total = 0;
     }
 
@@ -72,5 +73,15 @@ public class Product extends AppCompatActivity {
             }
         });
     }
+
+    public void openPurchase(View view){
+        Intent intent = new Intent(this, Purchase.class);
+        startActivity(intent);
+    }
+    public void openGallery(View view){
+        Intent intent = new Intent(this, Product.class);
+        startActivity(intent);
+    }
+
 
 }

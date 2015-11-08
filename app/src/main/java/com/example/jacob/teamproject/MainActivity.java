@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    void openProduct(View view){
+    public void openProduct(View view){
         Intent intent = new Intent(this, Product.class);
         startActivity(intent);
     }
