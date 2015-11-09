@@ -19,34 +19,40 @@ class Tie {
     }
 }
 
-class Purchase {
-    Vector<Tie> myTies = new Vector<Tie>;
+class Sale {
+    public Vector<Tie> myTies = new Vector<Tie>();
     float total;
 
-    Purchase() {
+    Sale() {
         total = 0;
     }
 
     float calculateTotal() {
-        for(int i = 0; i < myTies.size(); i++) {
+        for (int i = 0; i < myTies.size(); i++) {
             total += myTies.get(i).cost;
         }
 
         return total;
     }
 
-    float unit_Test() {
+}
+
+ class testPurchase {
+
+     Sale purchase = new Sale();
+
+    float test() {
         float p1 = 50;
         float p2 = (float) 54.23;
         float p3 = (float) 43.12;
         Tie t1 = new Tie(p1);
-        myTies.add(t1);
+        purchase.myTies.add(t1);
         Tie t2 = new Tie(p2);
-        myTies.add(t2);
+        purchase.myTies.add(t2);
         Tie t3 = new Tie(p3);
-        myTies.add(t3);
+        purchase.myTies.add(t3);
 
-        float myTotal = calculateTotal();
+        float myTotal = purchase.calculateTotal();
 
         assert myTotal == (p1 + p2 + p3);
 
