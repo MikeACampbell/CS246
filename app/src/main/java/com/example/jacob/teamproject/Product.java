@@ -1,12 +1,15 @@
 package com.example.jacob.teamproject;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 
 import java.util.Vector;
 
@@ -57,6 +60,8 @@ class Sell {
 
 public class Product extends AppCompatActivity {
 
+    ImageView largeView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +69,7 @@ public class Product extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        largeView = (ImageView)findViewById(R.id.largeView);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,5 +89,16 @@ public class Product extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    public void showImage(View view){
+        largeView.setVisibility(View.VISIBLE);
+        findViewById(R.id.background).setBackgroundColor(0xff444444);
+        switch(view.getId()){
+            case R.id.imageView:
+            largeView.setImageResource(R.drawable.tie);
+        }
+    }
+    public void hideImage(View view){
+        largeView.setVisibility(View.INVISIBLE);
+        findViewById(R.id.background).setBackgroundColor(0x00000000);
+    }
 }
