@@ -9,8 +9,12 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 
+import java.io.InputStream;
+import java.util.List;
 import java.util.Vector;
 
 class Tie {
@@ -61,6 +65,7 @@ class Sell {
 public class Product extends AppCompatActivity {
 
     ImageView largeView;
+    Product__Controller controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +74,6 @@ public class Product extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        largeView = (ImageView)findViewById(R.id.largeView);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +82,12 @@ public class Product extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        //set largeview to our invisible image view
+        largeView = (ImageView)findViewById(R.id.largeView);
+        //read our CSV file and pass it to the controller
+        InputStream inputStream = getResources().openRawResource(R.raw.products);
+        controller = new Product__Controller(inputStream);
     }
 
     public void openPurchase(View view){
@@ -101,4 +111,13 @@ public class Product extends AppCompatActivity {
         largeView.setVisibility(View.INVISIBLE);
         findViewById(R.id.background).setBackgroundColor(0x00000000);
     }
+    public void showList(View view){
+        ArrayAdapter<String> arrayAdapter;
+        List<String> myList = controller.items();
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, myList);
+        ListView listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(arrayAdapter);
+
+    }
+
 }
