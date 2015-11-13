@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.InputStream;
 import java.util.List;
@@ -17,11 +18,13 @@ import java.util.Vector;
 
 class Tie {
     float cost;
-    int tieType;
-    int image;
+    String name;
+    int stock;
 
-    Tie(float price) {
+    Tie(String tieName, float price, int quantity) {
+        name = tieName;
         cost = price;
+        stock = quantity;
     }
 }
 
@@ -41,7 +44,7 @@ class Sell {
         return total;
     }
 
-    float unit_Test() {
+    boolean unit_Test() {
         float p1 = 50;
         float p2 = (float) 54.23;
         float p3 = (float) 43.12;
@@ -54,16 +57,19 @@ class Sell {
 
         float myTotal = calculateTotal();
 
-        assert myTotal == (p1 + p2 + p3);
-
-        return myTotal;
+        if(myTotal == (p1 + p2 + p3))
+            return true;
+        else
+            return false;
     }
 }
+
 
 public class Product extends AppCompatActivity {
 
     ImageView largeView;
     Product__Controller controller;
+    Sell sell = new Sell();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +105,7 @@ public class Product extends AppCompatActivity {
 
     public void openPurchase(View view){
         Intent intent = new Intent(this, Purchase.class);
+        //intent.putExtra(Sell.myTies, Sell.calculateTotal());
         startActivity(intent);
     }
     public void openGallery(View view){
@@ -128,4 +135,16 @@ public class Product extends AppCompatActivity {
         listView.setAdapter(arrayAdapter);
     }
 
+    /*void addToCart(View view)
+    {
+        if(theTie.stock < 1)
+            Toast.makeText(getApplicationContext(), "This product is out of Stock", Toast.LENGTH_LONG).show();
+            return;
+        else {
+            theTie.stock--;
+            sell.myTies.add(view theTie);
+            sell.calculateTotal();
+        }
+    }
+*/
 }
