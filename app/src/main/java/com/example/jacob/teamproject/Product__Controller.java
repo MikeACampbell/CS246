@@ -1,5 +1,6 @@
 package com.example.jacob.teamproject;
 
+import android.content.Context;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,27 +13,37 @@ import java.util.List;
  */
 public class Product__Controller {
 
-    CSVFile inventory;
+    private CSVFile inventory;
 
     public Product__Controller(InputStream inStream){
         inventory = new CSVFile(inStream);
     }
 
     public List items(){
-        return inventory.read();
+        //Parcelable state = listView.onSaveInstanceState();
+        List<String[]> productList = inventory.read();
+
+        List<String> items = new ArrayList<>();
+        // list items: name, price, stock number
+        for(int i = 1; i < productList.size(); i++) {
+            items.add(productList.get(i)[2] + ","
+                    + productList.get(i)[10] + ","
+                    + productList.get(i)[25]);
+        }
+        return items;
     }
 }
 
 
 class CSVFile {
-    InputStream inputStream;
+    private InputStream inputStream;
 
     public CSVFile(InputStream inputStream){
         this.inputStream = inputStream;
     }
 
     public List read(){
-        List resultList = new ArrayList();
+        List<String[]> resultList = new ArrayList();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         try {
             String csvLine;
@@ -55,3 +66,4 @@ class CSVFile {
         return resultList;
     }
 }
+
