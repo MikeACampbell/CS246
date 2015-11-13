@@ -6,7 +6,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:id="@+id/background"
+    android:onClick="hideImage">
 
 
     <Button
@@ -14,20 +16,41 @@
         android:layout_height="wrap_content"
         android:text="Gallery"
         android:id="@+id/button_Gallery"
-        android:layout_marginBottom="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="25dp"
-        android:onClick="openGallery" />
+        android:textSize="25sp"
+        android:onClick="openGallery"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Purchase"
         android:id="@+id/button"
-        android:layout_marginBottom="100dp"
+        android:textSize="25sp"
+        android:onClick="openPurchase"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="25dp"
-        android:onClick="openPurchase" />
+        android:layout_alignStart="@+id/button_Gallery" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/imageView"
+        android:layout_alignParentStart="true"
+        android:onClick="showImage"
+        android:src="@drawable/tie" />
+
+    <ImageView
+        android:layout_width="1000dp"
+        android:layout_height="1250dp"
+        android:id="@+id/largeView"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/button_Gallery" />
+
+    <!--<ViewStub android:id="@+id/stub"
+        android:inflatedId="@+id/subTree"
+        android:layout="@layout/mySubTree"
+        android:layout_width="120dip"
+        android:layout_height="40dip" />-->
 </RelativeLayout>
