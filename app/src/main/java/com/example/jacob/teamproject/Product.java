@@ -1,8 +1,6 @@
 package com.example.jacob.teamproject;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -90,6 +88,15 @@ public class Product extends AppCompatActivity {
         controller = new Product__Controller(inputStream);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        List<String> myList = controller.items();
+        for(String item : myList){
+
+        }
+    }
+
     public void openPurchase(View view){
         Intent intent = new Intent(this, Purchase.class);
         startActivity(intent);
@@ -113,11 +120,12 @@ public class Product extends AppCompatActivity {
     }
     public void showList(View view){
         ArrayAdapter<String> arrayAdapter;
-        List<String> myList = controller.items();
-        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, myList);
         ListView listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(arrayAdapter);
+        List<String> myList = controller.items();
 
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, myList);
+        //arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, array);
+        listView.setAdapter(arrayAdapter);
     }
 
 }
