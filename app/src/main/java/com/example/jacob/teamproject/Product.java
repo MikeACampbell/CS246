@@ -7,18 +7,16 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.AbsoluteLayout;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.RelativeLayout;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-
-import static com.example.jacob.teamproject.R.drawable.blue_n_white;
 
 class Tie {
     float cost;
@@ -69,6 +67,7 @@ class Sell {
     }
 }
 
+
 public class Product extends AppCompatActivity {
 
     ImageView largeView;
@@ -93,7 +92,7 @@ public class Product extends AppCompatActivity {
         });
 
         //set largeview to our invisible image view
-        //largeView = (ImageView)findViewById(R.id.largeView);
+        largeView = (ImageView)findViewById(R.id.largeView);
         //read our CSV file and pass it to the controller
         InputStream inputStream = getResources().openRawResource(R.raw.products);
         controller = new Product__Controller(inputStream);
@@ -163,7 +162,7 @@ public class Product extends AppCompatActivity {
 
     public void openPurchase(View view){
         Intent intent = new Intent(this, Purchase.class);
-        //intent.putExtra(sell.myTies, sell.calculateTotal());
+        //intent.putExtra(Sell.myTies, Sell.calculateTotal());
         startActivity(intent);
     }
     public void openGallery(View view){
@@ -175,8 +174,8 @@ public class Product extends AppCompatActivity {
         largeView.setVisibility(View.VISIBLE);
         findViewById(R.id.background).setBackgroundColor(0xff444444);
         switch(view.getId()){
-            //case R.id.imageView:
-            //largeView.setImageResource(R.drawable.blue);
+            case R.id.imageView:
+            largeView.setImageResource(R.drawable.tie);
         }
     }
     public void hideImage(View view){
@@ -193,7 +192,16 @@ public class Product extends AppCompatActivity {
         listView.setAdapter(arrayAdapter);
     }
 
-    void addToCart(View view){
-                view.getId();
+    /*void addToCart(View view)
+    {
+        if(theTie.stock < 1)
+            Toast.makeText(getApplicationContext(), "This product is out of Stock", Toast.LENGTH_LONG).show();
+            return;
+        else {
+            theTie.stock--;
+            sell.myTies.add(view theTie);
+            sell.calculateTotal();
+        }
     }
+*/
 }
