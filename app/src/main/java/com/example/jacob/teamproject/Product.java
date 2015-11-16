@@ -137,12 +137,12 @@ public class Product extends AppCompatActivity {
 
     /*void addToCart(View view)
     {
-        if(theTie.stock < 1)
+        if(view .getid().stock < 1)
             Toast.makeText(getApplicationContext(), "This product is out of Stock", Toast.LENGTH_LONG).show();
             return;
         else {
-            theTie.stock--;
-            sell.myTies.add(view theTie);
+            view.getid().stock--;
+            sell.myTies.add(view.getid());
             sell.calculateTotal();
         }
     }
