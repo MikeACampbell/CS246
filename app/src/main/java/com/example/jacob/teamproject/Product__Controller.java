@@ -26,8 +26,8 @@ public class Product__Controller {
         List<String> items = new ArrayList<>();
         // list items: name, price, stock number
         for(int i = 1; i < productList.size(); i++) {
-            items.add(productList.get(i)[2] + ","
-                    + productList.get(i)[10] + ","
+            items.add(productList.get(i)[2] + ";"
+                    + productList.get(i)[10] + ";"
                     + productList.get(i)[25]);
         }
         return items;

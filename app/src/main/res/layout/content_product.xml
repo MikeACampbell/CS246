@@ -32,18 +32,9 @@
         android:layout_alignStart="@+id/button_Gallery" />
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:id="@+id/imageView"
-        android:layout_alignParentStart="true"
-        android:onClick="showImage"
-        android:src="@drawable/tie" />
-
-    <ImageView
         android:layout_width="1000dp"
         android:layout_height="1250dp"
         android:id="@+id/largeView"
-        android:layout_alignTop="@+id/imageView"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/button_Gallery" />
@@ -55,24 +46,16 @@
         android:layout_alignBottom="@+id/button"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:id="@+id/name"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/score"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp" />
+        android:text="Buy"
+        android:textSize="10sp"
+        android:onClick="addToCart"
+        android:id="@+id/a"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/button_Gallery" />
 
-    <!--<ViewStub android:id="@+id/stub"
-        android:inflatedId="@+id/subTree"
-        android:layout="@layout/mySubTree"
-        android:layout_width="120dip"
-        android:layout_height="40dip" />-->
+
+
 </RelativeLayout>

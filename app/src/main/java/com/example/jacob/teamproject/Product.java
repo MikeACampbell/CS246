@@ -6,14 +6,22 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 import android.widget.RelativeLayout;
 
+import org.w3c.dom.Text;
+
 import java.io.InputStream;
+import java.net.Authenticator;
+import java.net.HttpURLConnection;
+import java.net.PasswordAuthentication;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -70,10 +78,21 @@ class Sell {
 
 public class Product extends AppCompatActivity {
 
+
     ImageView largeView;
     Product__Controller controller;
     List<Tie> display_ties = new ArrayList<>();
     Sell sell = new Sell();
+
+
+    //Authenticator authenticator;
+        //Authenticator.setDefault(new Authenticator(){
+          //  protected PasswordAuthentication getPasswordAuthentication() {
+             //   return new PasswordAuthentication("myuser","mypass".toCharArray());
+            //}});
+        //HttpURLConnection c = (HttpURLConnection) new URL(url).openConnection();
+        //c.setUseCaches(false);
+        //c.connect();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,19 +125,29 @@ public class Product extends AppCompatActivity {
             Tie temp = new Tie (item.split(";"));
             display_ties.add(temp);
         }
+        if (display_ties.size() != 9){
+            Log.e("ProductActivity","There are " + display_ties.size() + " ties");
+        }
         List<ImageView> images = new ArrayList<>();
-
+        List<TextView> textViews = new ArrayList<>();
+        int j = -1;
         for(Tie tie : display_ties){
+            j++;
             ImageView newImage = new ImageView(this);
+            TextView textView = new TextView(this);
             switch (tie.getName()){
                 //case "Black Tie":
                     //newImage.setImageResource(R.drawable.black);
                     //break;
                 case "Pink Tie":
                     newImage.setImageResource(R.drawable.pink);
+                    textView.setText(tie.getName() + "\n" + tie.cost);
+                    newImage.setId(j);
                     break;
                 case "White Tie":
                     newImage.setImageResource(R.drawable.white);
+                    textView.setText(tie.getName() + "\n" + tie.cost);
+                    newImage.setId(j);
                     break;
                 case "Purple Tie":
                     newImage.setImageResource(R.drawable.purple);
@@ -130,24 +159,31 @@ public class Product extends AppCompatActivity {
                     newImage.setImageResource(R.drawable.blue);
                     break;
                 case "Black Blue and White":
-                    newImage.setImageResource(blue_n_white);
+                    newImage.setImageResource(R.drawable.red);
                     break;
                 case "Black Red and White Tie":
                     newImage.setImageResource(R.drawable.black_red_white);
                     break;
             }
+            //newImage.setOnClickListener(addToCart(););
             images.add(newImage);
+
+            textViews.add(textView);
         }
         RelativeLayout rl = (RelativeLayout)findViewById(R.id.background);
         int x = 0;
         int y = 0;
         int i = 0;
         for (ImageView image : images) {
+            textViews.get(i).setX(x);
+            textViews.get(i).setY(y + 470);
             image.setX(x);
             image.setY(y);
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(450,450);
             image.setLayoutParams(params);
+
             rl.addView(image);
+            rl.addView(textViews.get(i));
 
             if (i > 0) {
                 x += 550;
@@ -171,16 +207,18 @@ public class Product extends AppCompatActivity {
     }
 
     public void showImage(View view){
-        largeView.setVisibility(View.VISIBLE);
-        findViewById(R.id.background).setBackgroundColor(0xff444444);
-        switch(view.getId()){
-            case R.id.imageView:
-            largeView.setImageResource(R.drawable.tie);
-        }
+        //largeView.setVisibility(View.VISIBLE);
+        //findViewById(R.id.background).setBackgroundColor(0xff444444);
+        //switch(view.getId()){
+            //case R.id.pink:
+            //findViewById(0);
+            //largeView.setImageResource(R.drawable.);
+            //display_ties.get(0);
+        //}
     }
     public void hideImage(View view){
-        largeView.setVisibility(View.INVISIBLE);
-        findViewById(R.id.background).setBackgroundColor(0x00000000);
+        //largeView.setVisibility(View.INVISIBLE);
+        //findViewById(R.id.background).setBackgroundColor(0x00000000);
     }
     public void showList(View view){
         ArrayAdapter<String> arrayAdapter;
@@ -192,16 +230,17 @@ public class Product extends AppCompatActivity {
         listView.setAdapter(arrayAdapter);
     }
 
-    /*void addToCart(View view)
+    void addToCart(View view)
     {
-        if(theTie.stock < 1)
-            Toast.makeText(getApplicationContext(), "This product is out of Stock", Toast.LENGTH_LONG).show();
-            return;
+        Log.i("ProductActivity", "id value: " + view.getId());
+        if(display_ties.get(view.getId() - 97).stock < 1)
+            Log.i("ProductActivity", "There is no stock left for this tie");
         else {
-            theTie.stock--;
-            sell.myTies.add(view theTie);
+            display_ties.get(view.getId()).stock--;
+            sell.myTies.add(display_ties.get(view.getId()));
             sell.calculateTotal();
         }
+        Log.i("ProductActivity", "The total cost is $" + sell.total);
     }
-*/
+
 }
