@@ -1,5 +1,6 @@
 package com.example.jacob.teamproject;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +11,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -84,7 +86,6 @@ public class Product extends AppCompatActivity {
     List<Tie> display_ties = new ArrayList<>();
     Sell sell = new Sell();
 
-
     //Authenticator authenticator;
         //Authenticator.setDefault(new Authenticator(){
           //  protected PasswordAuthentication getPasswordAuthentication() {
@@ -135,9 +136,12 @@ public class Product extends AppCompatActivity {
             j++;
             ImageView newImage = new ImageView(this);
             TextView textView = new TextView(this);
+            Button button = new Button(this);
             switch (tie.getName()){
                 //case "Black Tie":
                     //newImage.setImageResource(R.drawable.black);
+                    //textView.setText(tie.getName() + "\n" + tie.cost);
+                    //newImage.setId(j);
                     //break;
                 case "Pink Tie":
                     newImage.setImageResource(R.drawable.pink);
@@ -151,18 +155,28 @@ public class Product extends AppCompatActivity {
                     break;
                 case "Purple Tie":
                     newImage.setImageResource(R.drawable.purple);
+                    textView.setText(tie.getName() + "\n" + tie.cost);
+                    newImage.setId(j);
                     break;
                 case "Red Tie":
                     newImage.setImageResource(R.drawable.red);
+                    textView.setText(tie.getName() + "\n" + tie.cost);
+                    newImage.setId(j);
                     break;
                 case "Blue Tie":
                     newImage.setImageResource(R.drawable.blue);
+                    textView.setText(tie.getName() + "\n" + tie.cost);
+                    newImage.setId(j);
                     break;
                 case "Black Blue and White":
-                    newImage.setImageResource(R.drawable.red);
+                    newImage.setImageResource(R.drawable.blue_n_white);
+                    textView.setText(tie.getName() + "\n" + tie.cost);
+                    newImage.setId(j);
                     break;
                 case "Black Red and White Tie":
                     newImage.setImageResource(R.drawable.black_red_white);
+                    textView.setText(tie.getName() + "\n" + tie.cost);
+                    newImage.setId(j);
                     break;
             }
             //newImage.setOnClickListener(addToCart(););
@@ -232,13 +246,73 @@ public class Product extends AppCompatActivity {
 
     void addToCart(View view)
     {
+        this.getResources().getInteger(R.integer.pink);
         Log.i("ProductActivity", "id value: " + view.getId());
-        if(display_ties.get(view.getId() - 97).stock < 1)
-            Log.i("ProductActivity", "There is no stock left for this tie");
-        else {
-            display_ties.get(view.getId()).stock--;
-            sell.myTies.add(display_ties.get(view.getId()));
-            sell.calculateTotal();
+        switch (view.getId()) {
+            case black:
+                if (display_ties.get(0).stock < 1)
+                    Log.i("ProductActivity", "There is no stock left for this tie");
+                else {
+                    display_ties.get(0).stock--;
+                    sell.myTies.add(display_ties.get(0));
+                    sell.calculateTotal();
+                }
+            case pink:
+                if (display_ties.get(1).stock < 1)
+                    Log.i("ProductActivity", "There is no stock left for this tie");
+                else {
+                    display_ties.get(1).stock--;
+                    sell.myTies.add(display_ties.get(1));
+                    sell.calculateTotal();
+                }
+            case white:
+                if (display_ties.get(2).stock < 1)
+                    Log.i("ProductActivity", "There is no stock left for this tie");
+                else {
+                    display_ties.get(2).stock--;
+                    sell.myTies.add(display_ties.get(2));
+                    sell.calculateTotal();
+                }
+            case purple:
+                if (display_ties.get(3).stock < 1)
+                    Log.i("ProductActivity", "There is no stock left for this tie");
+                else {
+                    display_ties.get(3).stock--;
+                    sell.myTies.add(display_ties.get(3));
+                    sell.calculateTotal();
+                }
+            case red:
+                if (display_ties.get(4).stock < 1)
+                    Log.i("ProductActivity", "There is no stock left for this tie");
+                else {
+                    display_ties.get(4).stock--;
+                    sell.myTies.add(display_ties.get(4));
+                    sell.calculateTotal();
+                }
+            case blue:
+                if (display_ties.get(5).stock < 1)
+                    Log.i("ProductActivity", "There is no stock left for this tie");
+                else {
+                    display_ties.get(5).stock--;
+                    sell.myTies.add(display_ties.get(5));
+                    sell.calculateTotal();
+                }
+            case blue_n_white:
+                if (display_ties.get(6).stock < 1)
+                    Log.i("ProductActivity", "There is no stock left for this tie");
+                else {
+                    display_ties.get(6).stock--;
+                    sell.myTies.add(display_ties.get(6));
+                    sell.calculateTotal();
+                }
+            case black_red_white:
+                if (display_ties.get(7).stock < 1)
+                    Log.i("ProductActivity", "There is no stock left for this tie");
+                else {
+                    display_ties.get(7).stock--;
+                    sell.myTies.add(display_ties.get(7));
+                    sell.calculateTotal();
+                }
         }
         Log.i("ProductActivity", "The total cost is $" + sell.total);
     }
