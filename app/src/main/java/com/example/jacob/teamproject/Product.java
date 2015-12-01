@@ -297,6 +297,7 @@ public class Product extends AppCompatActivity {
                     sell.myTies.add(display_ties.get(5));
                     sell.calculateTotal();
                 }
+
             case blue_n_white:
                 if (display_ties.get(6).stock < 1)
                     Log.i("ProductActivity", "There is no stock left for this tie");
