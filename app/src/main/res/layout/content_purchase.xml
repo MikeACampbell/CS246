@@ -18,7 +18,7 @@
         android:onClick="openProduct"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/Total" />
+        android:layout_toStartOf="@+id/TotalCost" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,15 +28,6 @@
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listView2"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/textView2" />
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -49,19 +40,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Shipping"
+        android:text="Est Shipping"
         android:id="@+id/textView2"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/TotalCost"
+        android:layout_toEndOf="@+id/scrollView" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/Total"
-        android:layout_below="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
+        android:id="@+id/TotalCost"
+        android:layout_below="@+id/shippingCost"
+        android:layout_alignStart="@+id/shippingCost" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -69,7 +60,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Total"
         android:id="@+id/textView3"
-        android:layout_alignBottom="@+id/Total"
+        android:layout_alignBottom="@+id/TotalCost"
         android:layout_alignParentStart="true" />
 
     <EditText
@@ -77,9 +68,10 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText"
-        android:layout_centerVertical="true"
-        android:layout_alignEnd="@+id/listView2" />
+        android:id="@+id/shippingCost"
+        android:layout_marginTop="46dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -88,7 +80,7 @@
         android:id="@+id/button2"
         android:textSize="20dp"
         android:layout_alignTop="@+id/button"
-        android:layout_alignEnd="@+id/Total" />
+        android:layout_alignEnd="@+id/TotalCost" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -100,12 +92,41 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="41dp" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:ems="10"
+        android:id="@+id/BillingAddress"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Shipping"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/BillingAddress"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="37dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:ems="10"
+        android:id="@+id/ShippingAddress"
+        android:layout_below="@+id/textView5"
+        android:layout_toEndOf="@+id/scrollView" />
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView3"
-        android:layout_below="@+id/textView4"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/Cart"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/textView2" />
 
     <!--android:layout_weight="1"
        android:width="0dp"-->
