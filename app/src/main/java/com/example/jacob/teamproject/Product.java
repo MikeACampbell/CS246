@@ -212,6 +212,12 @@ public class Product extends AppCompatActivity {
 
     public void openPurchase(View view){
         Intent intent = new Intent(this, Purchase.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("cart", sell.myTies);
+        Bundle bundle2 = new Bundle();
+        bundle2.putSerializable("total", sell.total);
+        intent.putExtra("cart", bundle);
+        intent.putExtra("total", bundle2);
         //intent.putExtra(Sell.myTies, Sell.calculateTotal());
         startActivity(intent);
     }
@@ -317,5 +323,12 @@ public class Product extends AppCompatActivity {
         }
         Log.i("ProductActivity", "The total cost is $" + sell.total);
     }
+
+    void clearCart(View view) {
+        sell.myTies.clear();
+        sell.calculateTotal();
+    }
+
+
 
 }

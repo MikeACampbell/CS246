@@ -25,6 +25,8 @@ class Address{
 public class Purchase extends AppCompatActivity {
     Vector<Address> listShipping = new Vector<>();
     List <Address> listBilling = new ArrayList<>();
+    List<Tie> myCart = new ArrayList<>();
+    float total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,10 @@ public class Purchase extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        myCart = (List<Tie>) getIntent().getSerializableExtra("cart");
+        total = (Float) getIntent().getSerializableExtra("total");
+
     }
 
     public void openProduct(View view){
